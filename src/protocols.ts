@@ -56,6 +56,7 @@ export type TicketType = {
 };
 
 export type Ticket = {
+    id: number,
     status: string, //RESERVED | PAID
     ticketTypeId: number,
     enrollmentId: number,

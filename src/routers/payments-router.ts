@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { authenticateToken } from '@/middlewares';
+import { authenticateToken, validateQuery } from '@/middlewares';
 import { getPaymentTicketById } from '@/controllers';
-//import { createEnrollmentSchema } from '@/schemas';
+import { ticketIdSchema } from '@/schemas';
 
 const paymentsRouter = Router();
 
 paymentsRouter
     .all('/*', authenticateToken)
-    .get('/', getPaymentTicketById)
-    //.get('/', getTickets)
-    //.post('/', newTicket)
+    .get('/', validateQuery(ticketIdSchema), getPaymentTicketById)
+//.get('/', getTickets)
+//.post('/', newTicket)
 
 export { paymentsRouter };

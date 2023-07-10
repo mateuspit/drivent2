@@ -9,6 +9,10 @@ import paymentRepository from '@/repositories/payments-repository';
 async function getPaymentTicketById(ticketId: number) {
     const result = await paymentRepository.getPaymentTicketById(ticketId);
     //console.log("test1:", result);
+    console.log("ser:",result);
+    if (result === null || !result) {
+        throw notFoundError();
+    }
     return result;
 }
 

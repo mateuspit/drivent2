@@ -9,6 +9,7 @@ async function getPaymentTicketById(ticketId: number) {
             id: ticketId
         }
     });
+    console.log("rep:",result);
     return result;
 }
 

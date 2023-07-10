@@ -16,7 +16,9 @@ export async function getPaymentTicketById(req: AuthenticatedRequest, res: Respo
         //console.log("test2:", result);
         return res.status(httpStatus.OK).send(result);
     } catch (error) {
-        return res.sendStatus(httpStatus.NO_CONTENT);
+        if (error.name === 'NotFoundError') {
+            return res.send(httpStatus.NOT_FOUND);
+        }
     }
 }
 

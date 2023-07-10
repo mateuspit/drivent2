@@ -5,8 +5,10 @@ import httpStatus from 'http-status';
 import paymentsService from '@/services/payments-service';
 //import enrollmentsService from '@/services/enrollments-service';
 import { Ticket } from '@/protocols';
+//
+//
 
-//getPaymentTicketById
+//getPaymentTicketById makePayment
 
 export async function getPaymentTicketById(req: AuthenticatedRequest, res: Response) {
     //const ticketId = parseInt(req.query.ticketId as string, 10);
@@ -22,27 +24,17 @@ export async function getPaymentTicketById(req: AuthenticatedRequest, res: Respo
     }
 }
 
-//export async function getTickets(req: AuthenticatedRequest, res: Response) {
-//    try {
-//        const result = await ticketsService.getTickets();
-//        //console.log("test2:", result);
-//        return res.status(httpStatus.OK).send(result);
-//    } catch (error) {
-//        return res.sendStatus(httpStatus.NOT_FOUND);
-//    }
-//}
-
-//export async function newTicket(req: AuthenticatedRequest, res: Response) {
-
-//    //const ticketTypeId: TicketTypeId = req.body as TicketTypeId;
-//    const { ticketTypeId } = req.body as { ticketTypeId: number };
-
-//    try {
-//        const result = await ticketsService.postTicket(ticketTypeId);
-//        console.log("post2:", result);
-//        return res.status(httpStatus.CREATED).send(result);
-//        //return res.sendStatus(httpStatus.CREATED);
-//    } catch (error) {
-//        return res.sendStatus(httpStatus.NOT_FOUND);
-//    }
-//}
+//
+export async function makePayment(req: AuthenticatedRequest, res: Response) {
+    const paymentData = req.body;
+    try {
+        const result = await paymentsService.makePayment(paymentData);
+        //console.log("test2:", result);
+        return res.status(httpStatus.OK).send(result);
+    } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.send(httpStatus.NOT_FOUND);
+        }
+    }
+}
+//

@@ -16,30 +16,23 @@ async function getPaymentTicketById(ticketId: number) {
     return result;
 }
 
-//async function getTickets() {
-//    const result = await ticketRepository.getTickets();
-//    //console.log("test1:", result);
-//    if (!result) {
-//        throw notFoundError();
-//    }
-//    return result;
-//}
-
-//async function postTicket(ticketTypeId: number) {
-//    const result = await ticketRepository.postTicket(ticketTypeId);
-//    console.log("post1:", result);
-//    if (!result) {
-//        throw notFoundError();
-//    }
-//    return result;
-//}
+//
+async function makePayment(paymentData: any) {
+    const result = await paymentRepository.makePayment(paymentData);
+    //console.log("test1:", result);
+    console.log("ser:",result);
+    if (result === null || !result) {
+        throw notFoundError();
+    }
+    return result;
+}
+//
 
 const paymentsService = {
-    getPaymentTicketById
-    //getTickets,
-    //postTicket
-    //createOrUpdateEnrollmentWithAddress,
-    //getAddressFromCEP,
+    getPaymentTicketById,
+    //
+    makePayment
+    //
 };
 
 export default paymentsService;

@@ -13,35 +13,26 @@ async function getPaymentTicketById(ticketId: number) {
     return result;
 }
 
+//
+async function makePayment(ticketId: number) {
+    const result = await prisma.ticket.findUnique({
+        where: {
+            id: ticketId
+        }
+    });
+    console.log("rep:",result);
+    return result;
+}
+//
 
-//async function getTickets() {
-//    const result = await prisma.ticket.findFirst({
-//        include: {
-//            TicketType: true
-//        }
-//    });
-//    return result;
-//}
 
-//async function postTicket(ticketTypeId: number) {
-//    const newTicket = await prisma.ticket.create({
-//        data: {
-//            status: "RESERVED",
-//            ticketTypeId: ticketTypeId,
-//            enrollmentId: null, // Ou forneça um valor válido para a coluna enrollmentId
-//            createdAt: new Date(),
-//            updatedAt: new Date(),
-//        },
-//        include: {
-//            TicketType: true,
-//        },
-//    });
 
-//    return newTicket;
-//}
 
 const paymentRepository = {
-    getPaymentTicketById
+    getPaymentTicketById,
+    //
+    makePayment
+    //
     //getTickets,
     //postTicket
 };

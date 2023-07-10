@@ -24,6 +24,10 @@ export async function getPaymentTicketById(req: AuthenticatedRequest, res: Respo
         if (error.name === 'NotFoundError') {
             return res.send(httpStatus.NOT_FOUND);
         }
+        if (error.message === 'No_Tickets') {
+            return res.send(httpStatus.NOT_FOUND);
+        }
+        //return res.send(httpStatus.UNAUTHORIZED);
     }
 }
 

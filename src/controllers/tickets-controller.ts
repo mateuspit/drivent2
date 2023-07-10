@@ -18,7 +18,7 @@ export async function getTicketsType(req: AuthenticatedRequest, res: Response) {
 
 export async function getTickets(req: AuthenticatedRequest, res: Response) {
     try {
-        const result = await ticketsService.getTickets();
+        const result = await ticketsService.getTickets(req.userId);
         //console.log("test2:", result);
         return res.status(httpStatus.OK).send(result);
     } catch (error) {

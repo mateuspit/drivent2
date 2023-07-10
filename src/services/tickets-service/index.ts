@@ -12,8 +12,8 @@ async function getTicketsType() {
     return result;
 }
 
-async function getTickets() {
-    const result = await ticketRepository.getTickets();
+async function getTickets(userId: number) {
+    const result = await ticketRepository.getTickets(userId);
     //console.log("test1:", result);
     if (!result) {
         throw notFoundError();

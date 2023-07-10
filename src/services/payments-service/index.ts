@@ -6,7 +6,7 @@ import paymentRepository from '@/repositories/payments-repository';
 //import { exclude } from '@/utils/prisma-utils';
 //import { TicketTypeId } from '@/protocols';
 
-async function getPaymentTicketById(ticketId: number) {
+async function getPaymentTicketById(ticketId: number, userId: any) {
     const result = await paymentRepository.getPaymentTicketById(ticketId);
     //console.log("test1:", result);
     console.log("ser:",result);

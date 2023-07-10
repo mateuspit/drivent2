@@ -12,9 +12,12 @@ import { Ticket } from '@/protocols';
 
 export async function getPaymentTicketById(req: AuthenticatedRequest, res: Response) {
     //const ticketId = parseInt(req.query.ticketId as string, 10);
+    //
+    const userId = req.userId;
+    //
     const ticketId: Ticket['id'] = parseInt(req.query.ticketId as string, 10);
     try {
-        const result = await paymentsService.getPaymentTicketById(ticketId);
+        const result = await paymentsService.getPaymentTicketById(ticketId, userId);
         //console.log("test2:", result);
         return res.status(httpStatus.OK).send(result);
     } catch (error) {
@@ -35,6 +38,7 @@ export async function makePayment(req: AuthenticatedRequest, res: Response) {
         if (error.name === 'NotFoundError') {
             return res.send(httpStatus.NOT_FOUND);
         }
+        return res.send(httpStatus.UNAUTHORIZED);
     }
 }
 //

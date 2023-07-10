@@ -7,6 +7,9 @@ async function getPaymentTicketById(ticketId: number) {
     const result = await prisma.ticket.findUnique({
         where: {
             id: ticketId
+        },
+        include: {
+            Payment: true
         }
     });
     console.log("rep:",result);
@@ -17,7 +20,7 @@ async function getPaymentTicketById(ticketId: number) {
 async function makePayment(ticketId: number) {
     const result = await prisma.ticket.findUnique({
         where: {
-            id: ticketId
+            id: ticketId,
         }
     });
     console.log("rep:",result);
